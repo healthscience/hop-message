@@ -2,9 +2,11 @@
   "name": "hop-message",
   "version": "0.0.1",
   "description": "routing message for hop",
-  "main": "index.js",
+  "type": "module",
+  "bin": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "mocha test/*.*"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/healthscience/hop-message/issues"
   },
-  "homepage": "https://github.com/healthscience/hop-message#readme"
+  "homepage": "https://github.com/healthscience/hop-message#readme",
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "mocha": "^10.0.0"
+  }
 }
