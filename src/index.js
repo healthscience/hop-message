@@ -25,8 +25,39 @@ class HopMessages extends EventEmitter {
   *
   */
   messageIn = function (message) {
-    console.log('message')
+    let routeMessage = {}
+    // verifty -> route ECS or back to network (or both)
+    let verifyState = this.verifyMessage()
+    // library sf-ECS data-API AI
+    if (verifyState === true) {
+      if (message.type === 'launch') {
+        routeMessage.type = 'launch'
+        routeMessage.data = 'pass'
+      } else if (message.reftype.trim() === 'ignore' && message.type.trim() === 'safeflow'  ) {
+        // sf-ECS
+      } else if (message.type.trim() === 'library') {
+        this.library(message)
+      } else if (message.type.trim() === 'data-api') {
+        
+      } else if (message.type.trim() === 'bb-ai') { 
+      }
+    } else {
+      routeMessage.type = 'launch'
+      routeMessage.data = 'fail'
+    }
+    return routeMessage
   }
+
+  /**
+  * check if signed, structure, warm  cold, allow or disallow, order priority
+  * @method verifyMessage
+  *
+  */
+   verifyMessage = function (message) {
+    // check for public key sign, format
+    // is between peer and HOP or from network?
+    return true
+   }
 
 }
 
