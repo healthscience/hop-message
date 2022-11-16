@@ -11,12 +11,18 @@
 */
 import util from 'util'
 import EventEmitter from 'events'
+import SfRoute from './safeflow/index.js'
+import LibraryRoute from './library/index.js'
+// import HyperRoute from './hyperspace/index.js'
 
 class HopMessages extends EventEmitter {
 
   constructor() {
     super()
     console.log('{{HOP-Messages}}')
+    this.routeSafeflow = new SfRoute()
+    this.routeLibrary = new LibraryRoute()
+    // this.routeHyper = new HyperRoute()
   }
 
   /**
@@ -35,11 +41,13 @@ class HopMessages extends EventEmitter {
         routeMessage.data = 'pass'
       } else if (message.reftype.trim() === 'ignore' && message.type.trim() === 'safeflow'  ) {
         // sf-ECS
+        routeMessage = this.routeSafeflow.assessMessage(message)
       } else if (message.type.trim() === 'library') {
-        this.library(message)
+        routeMessage = this.routeLibrary.assessMessage(message)
       } else if (message.type.trim() === 'data-api') {
-        
-      } else if (message.type.trim() === 'bb-ai') { 
+        // routeMessage = this.routeHyper.()
+       } else if (message.type.trim() === 'bb-ai') {
+        // routeMessage = this.routeBBAi(options)
       }
     } else {
       routeMessage.type = 'launch'
