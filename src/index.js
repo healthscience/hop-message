@@ -44,6 +44,8 @@ class HopMessages extends EventEmitter {
         routeMessage = this.routeSafeflow.assessMessage(message)
       } else if (message.type.trim() === 'library') {
         routeMessage = this.routeLibrary.assessMessage(message)
+      } else if (message.type.trim() === 'bentospaces') {
+        routeMessage = message
       } else if (message.type.trim() === 'data-api') {
         // routeMessage = this.routeHyper.()
        } else if (message.type.trim() === 'bb-ai') {
@@ -53,6 +55,8 @@ class HopMessages extends EventEmitter {
       routeMessage.type = 'launch'
       routeMessage.data = 'fail'
     }
+    console.log('route of message after verfiy message')
+    console.log(routeMessage)
     return routeMessage
   }
 

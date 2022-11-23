@@ -26,10 +26,10 @@ class SfRoute extends EventEmitter {
   *
   */
    assessMessage = function (options) {
-    console.log('type analaysis')
+    console.log('type analaysis sf')
     let messageRoute = {}
-    messageRoute.type = 'safeflow'
-    messageRoute.action = options
+    messageRoute.type = options.type
+    messageRoute.action = options.action
     return messageRoute
   }
 

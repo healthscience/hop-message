@@ -25,10 +25,11 @@ class LibraryRoute extends EventEmitter {
   *
   */
    assessMessage = function (options) {
-    console.log('type analaysis')
+    console.log('type analaysis lib')
     let messageRoute = {}
     messageRoute.type = 'library'
-    messageRoute.action = options
+    messageRoute.action = options.action
+    messageRoute.reftype = options.reftype
     return messageRoute
   }
 
