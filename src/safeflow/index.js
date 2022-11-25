@@ -11,7 +11,6 @@
 */
 import util from 'util'
 import EventEmitter from 'events'
-import SafeFlow from 'node-safeflow'
 
 class SfRoute extends EventEmitter {
 
@@ -26,10 +25,10 @@ class SfRoute extends EventEmitter {
   *
   */
    assessMessage = function (options) {
-    console.log('type analaysis sf')
     let messageRoute = {}
     messageRoute.type = options.type
     messageRoute.action = options.action
+    messageRoute.data = options.data
     return messageRoute
   }
 
