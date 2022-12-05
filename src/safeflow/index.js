@@ -16,7 +16,6 @@ class SfRoute extends EventEmitter {
 
   constructor() {
     super()
-    console.log('{{sf-route}}')
   }
 
   /**

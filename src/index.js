@@ -19,7 +19,6 @@ class HopMessages extends EventEmitter {
 
   constructor() {
     super()
-    console.log('{{HOP-Messages}}')
     this.routeSafeflow = new SfRoute()
     this.routeLibrary = new LibraryRoute()
     // this.routeHyper = new HyperRoute()

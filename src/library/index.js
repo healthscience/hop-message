@@ -16,7 +16,6 @@ class LibraryRoute extends EventEmitter {
 
   constructor() {
     super()
-    console.log('{{library-route}}')
   }
 
   /**
