@@ -13,6 +13,7 @@ import util from 'util'
 import EventEmitter from 'events'
 import SfRoute from './safeflow/index.js'
 import LibraryRoute from './library/index.js'
+import DmlValidateroute from './library/index.js'
 // import HyperRoute from './hyperspace/index.js'
 
 class HopMessages extends EventEmitter {
@@ -21,6 +22,7 @@ class HopMessages extends EventEmitter {
     super()
     this.routeSafeflow = new SfRoute()
     this.routeLibrary = new LibraryRoute()
+    this.routeDML = new DmlValidateroute ()
     // this.routeHyper = new HyperRoute()
   }
 
@@ -33,7 +35,7 @@ class HopMessages extends EventEmitter {
     let routeMessage = {}
     // verifty -> route ECS or back to network (or both)
     let verifyState = this.verifyMessage()
-    // library sf-ECS data-API AI
+    // library sf-ECS data-API AI DML
     if (verifyState === true) {
       if (message.type === 'launch') {
         routeMessage.type = 'launch'
@@ -53,6 +55,15 @@ class HopMessages extends EventEmitter {
        } else if (message.type.trim() === 'bbai') {
         // routeMessage = this.routeBBAi(options)
         routeMessage.type = 'bbai-reply'
+        routeMessage.bbid = message.bbid
+        routeMessage.reftype = 'ignore'
+        routeMessage.action = message.action
+        routeMessage.data = message.data
+      } else if (message.type.trim() === 'dml') {
+        console.log('dml message')
+        routeMessage = this.routeDML(options)
+        routeMessage.type = 'dml-reply'
+        routeMessage.bbid = message.bbid
         routeMessage.reftype = 'ignore'
         routeMessage.action = message.action
         routeMessage.data = message.data
