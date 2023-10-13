@@ -1,6 +1,6 @@
 {
   "name": "hop-message",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "routing message for hop",
   "type": "module",
   "main": "src/index.js",
