@@ -11,7 +11,6 @@
 */
 import util from 'util'
 import EventEmitter from 'events'
-import beebeeMessage from './bbai/index.js'
 import SfRoute from './safeflow/index.js'
 import LibraryRoute from './library/index.js'
 import DmlValidateroute from './library/index.js'
@@ -21,7 +20,6 @@ class HopMessages extends EventEmitter {
 
   constructor() {
     super()
-    this.beebeeMessage = new beebeeMessage()
     this.routeSafeflow = new SfRoute()
     this.routeLibrary = new LibraryRoute()
     this.routeDML = new DmlValidateroute ()
@@ -34,8 +32,6 @@ class HopMessages extends EventEmitter {
   *
   */
   messageIn = function (message) {
-    console.log('hop-message')
-    console.log(message)
     let routeMessage = {}
     // verifty -> route ECS or back to network (or both)
     let verifyState = this.verifyMessage()
@@ -57,12 +53,12 @@ class HopMessages extends EventEmitter {
       } else if (message.type.trim() === 'data-api') {
         // routeMessage = this.routeHyper.()
        } else if (message.type.trim() === 'bbai') {
-        let verifiedMessage = this.beebeeMessage.assessMessage(message)
+        // routeMessage = this.routeBBAi(options)
         routeMessage.type = 'bbai-reply'
-        routeMessage.bbid = verifiedMessage.bbid
+        routeMessage.bbid = message.bbid
         routeMessage.reftype = 'ignore'
-        routeMessage.action = verifiedMessage.action
-        routeMessage.data = verifiedMessage.data
+        routeMessage.action = message.action
+        routeMessage.data = message.data
       } else if (message.type.trim() === 'dml') {
         console.log('dml message')
         routeMessage = this.routeDML(options)
