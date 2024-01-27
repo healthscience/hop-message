@@ -27,7 +27,9 @@ class LibraryRoute extends EventEmitter {
     let messageRoute = {}
     messageRoute.type = 'library'
     messageRoute.action = options.action
+    messageRoute.privacy = options.privacy
     messageRoute.reftype = options.reftype
+    messageRoute.task = options.task
     messageRoute.data = options.data
     return messageRoute
   }

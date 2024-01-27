@@ -14,12 +14,13 @@ import EventEmitter from 'events'
 import SfRoute from './safeflow/index.js'
 import LibraryRoute from './library/index.js'
 import DmlValidateroute from './library/index.js'
-// import HyperRoute from './hyperspace/index.js'
+import NetworkRoute from './network/index.js'
 
 class HopMessages extends EventEmitter {
 
   constructor() {
     super()
+    this.routeNetwork = new NetworkRoute()
     this.routeSafeflow = new SfRoute()
     this.routeLibrary = new LibraryRoute()
     this.routeDML = new DmlValidateroute ()
@@ -43,6 +44,8 @@ class HopMessages extends EventEmitter {
       } else if (message.reftype.trim() === 'ignore' && message.type.trim() === 'safeflow'  ) {
         // sf-ECS
         routeMessage = this.routeSafeflow.assessMessage(message)
+      } else if (message.type.trim() === 'network') {
+        routeMessage = this.routeNetwork.assessMessage(message)
       } else if (message.type.trim() === 'library') {
         routeMessage = this.routeLibrary.assessMessage(message)
       } else if (message.type.trim() === 'bentospace') {
