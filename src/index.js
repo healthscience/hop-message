@@ -48,10 +48,12 @@ class HopMessages extends EventEmitter {
         routeMessage = this.routeNetwork.assessMessage(message)
       } else if (message.type.trim() === 'library') {
         routeMessage = this.routeLibrary.assessMessage(message)
-      } else if (message.type.trim() === 'bentospace') {
-        routeMessage.type = 'bentospace'
-        routeMessage.reftype = message.reftype
+      } else if (message.type.trim() === 'bentobox') {
+        routeMessage.type = message.type
         routeMessage.action = message.action
+        routeMessage.reftype = message.reftype
+        routeMessage.task = message.task
+        routeMessage.bbid = message.bbid
         routeMessage.data = message.data
       } else if (message.type.trim() === 'data-api') {
         // routeMessage = this.routeHyper.()
