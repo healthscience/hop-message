@@ -63,6 +63,7 @@ class HopMessages extends EventEmitter {
         routeMessage.bbid = message.bbid
         routeMessage.reftype = 'ignore'
         routeMessage.action = message.action
+        routeMessage.task = message.task
         routeMessage.data = message.data
       } else if (message.type.trim() === 'dml') {
         console.log('dml message')
@@ -71,6 +72,7 @@ class HopMessages extends EventEmitter {
         routeMessage.bbid = message.bbid
         routeMessage.reftype = 'ignore'
         routeMessage.action = message.action
+        routeMessage.task = message.task
         routeMessage.data = message.data
       }
     } else {
