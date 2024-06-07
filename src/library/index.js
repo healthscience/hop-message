@@ -31,6 +31,7 @@ class LibraryRoute extends EventEmitter {
     messageRoute.reftype = options.reftype
     messageRoute.task = options.task
     messageRoute.data = options.data
+    messageRoute.bbid = options.bbid
     return messageRoute
   }
 
