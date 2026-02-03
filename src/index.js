@@ -15,6 +15,7 @@ import SfRoute from './safeflow/index.js'
 import LibraryRoute from './library/index.js'
 import DmlValidateroute from './library/index.js'
 import NetworkRoute from './network/index.js'
+import BesearchRoute from './besearch/index.js'
 
 class HopMessages extends EventEmitter {
 
@@ -24,6 +25,7 @@ class HopMessages extends EventEmitter {
     this.routeSafeflow = new SfRoute()
     this.routeLibrary = new LibraryRoute()
     this.routeDML = new DmlValidateroute ()
+    this.routeBesearch = new BesearchRoute()
     // this.routeHyper = new HyperRoute()
   }
 
@@ -65,6 +67,8 @@ class HopMessages extends EventEmitter {
         routeMessage.action = message.action
         routeMessage.task = message.task
         routeMessage.data = message.data
+      } else if (message.type.trim() === 'besearch') {
+        routeMessage = this.routeBesearch.assessMessage(message)
       } else if (message.type.trim() === 'dml') {
         console.log('dml message')
         routeMessage = this.routeDML(options)
