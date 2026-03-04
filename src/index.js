@@ -43,7 +43,7 @@ class HopMessages extends EventEmitter {
       if (message.type === 'launch') {
         routeMessage.type = 'launch'
         routeMessage.data = 'pass'
-      } else if (message.reftype.trim() === 'ignore' && message.type.trim() === 'safeflow'  ) {
+      } else if (message.type.trim() === 'safeflow'  ) {
         // sf-ECS
         routeMessage = this.routeSafeflow.assessMessage(message)
       } else if (message.type.trim() === 'heliclock') {
